@@ -1,2 +1,7 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/39DJV9ho)
+# DESARROLLO DE SOFTWARE
+## EJ04
 
+## Integrantes
+- **60253** - Alicata, Luciano Antonio - <LucianoAntonioAlicata@alu.frt.utn.edu.ar>
+* **62013** - Leyva, María Belén - <MariaBelenLeyva@alu.frt.utn.edu.ar>
++ **60638** - Rivero, Juanita Sofía - <JuanitaSofiaRivero@alu.frt.utn.edu.ar>
