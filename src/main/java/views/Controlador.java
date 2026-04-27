@@ -31,4 +31,24 @@ public class Controlador {
         }
         return new double[] {consumoElectricos, consumoCombustible};
     }
+
+    public static void agregarVehiculo(String patente, String nombreMarca, String paisMarca, 
+        String modelo, int anio, double capacidad, int indexSucursal, String tipo, 
+        double kmLitro, double litrosExtra, double kwh) {
+    
+    	domain.Marca marca = new domain.Marca(nombreMarca, paisMarca);
+    	domain.Sucursal sucursal = Persistencia.getSucursales().get(indexSucursal);
+    	domain.Vehiculo nuevoVehiculo;
+
+    	if (tipo.equals("ELÉCTRICO")) {
+        	nuevoVehiculo = new domain.VehiculoElectrico(patente, marca, modelo, anio, capacidad, sucursal, kwh);
+    	} 
+	else {
+        	nuevoVehiculo = new domain.VehiculoCombustible(patente, marca, modelo, anio, capacidad, sucursal, kmLitro, litrosExtra);
+   	}
+
+    	Persistencia.getVehiculos().add(nuevoVehiculo);
+    }
+
 }
+	

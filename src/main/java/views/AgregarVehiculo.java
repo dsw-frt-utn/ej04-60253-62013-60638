@@ -312,42 +312,31 @@ public class AgregarVehiculo extends javax.swing.JFrame {
         cbxSucursal.setModel(model);
     }
     
-    
-    private void btnAgregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVehiculoActionPerformed
 
-        try{
-            String patente = txtPatente.getText();
-            String nombreM = txtNombreMarca.getText();
-            String paisM = txtPaisMarca.getText();
-            domain.Marca marca = new domain.Marca(nombreM, paisM);
-            String modelo = txtModelo.getText();
-            int anio = Integer.parseInt(txtAnio.getText());
-            double capacidad = Double.parseDouble(txtCapacidadCarga.getText());
+private void btnAgregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {
+    try {
+        String patente = txtPatente.getText();
+        String nombreM = txtNombreMarca.getText();
+        String paisM = txtPaisMarca.getText();
+        String modelo = txtModelo.getText();
+        int anio = Integer.parseInt(txtAnio.getText());
+        double capacidad = Double.parseDouble(txtCapacidadCarga.getText());
+        int indexSucursal = cbxSucursal.getSelectedIndex();
+        String tipo = cbxTipo.getSelectedItem().toString();
+        double kmLitro = tipo.equals("COMBUSTIBLE") ? Double.parseDouble(txtKmLitro.getText()) : 0;
+        double extra = tipo.equals("COMBUSTIBLE") ? Double.parseDouble(txtLitrosExtra.getText()) : 0;
+        double kwh = tipo.equals("ELÉCTRICO") ? Double.parseDouble(txtKwhBase.getText()) : 0;
 
-            int indexSucursal = cbxSucursal.getSelectedIndex();
-            domain.Sucursal sucursal = data.Persistencia.getSucursales().get(indexSucursal);
+        Controlador.agregarVehiculo(patente, nombreM, paisM, modelo, anio, capacidad, indexSucursal, tipo, kmLitro, extra, kwh);
 
-            String tipo = cbxTipo.getSelectedItem().toString();
-            domain.Vehiculo nuevoVehiculo;
+        javax.swing.JOptionPane.showMessageDialog(this, "Vehículo agregado");
+        this.dispose();
 
-            if (tipo.equals("ELÉCTRICO")) {
-                double kwh = Double.parseDouble(txtKwhBase.getText());
-                nuevoVehiculo = new domain.VehiculoElectrico(patente, marca, modelo, anio, capacidad, sucursal, kwh);
-            } else{
-                double kmLitro = Double.parseDouble(txtKmLitro.getText());
-                double extra = Double.parseDouble(txtLitrosExtra.getText());
-                nuevoVehiculo = new domain.VehiculoCombustible(patente, marca, modelo, anio, capacidad, sucursal, kmLitro, extra);
-            }
-
-            data.Persistencia.getVehiculos().add(nuevoVehiculo);
-            javax.swing.JOptionPane.showMessageDialog(this, "vehiculo agregado");
-            this.dispose(); // Cerrar ventana
-
-        } catch (NumberFormatException e){
-            System.out.println("error al agregar");
-        }
-
-    }//GEN-LAST:event_btnAgregarVehiculoActionPerformed
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error en los datos ingresados");
+    }
+}    
+//GEN-LAST:event_btnAgregarVehiculoActionPerformed
 
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
